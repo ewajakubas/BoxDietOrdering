@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="content" class="flex-center flex-column">
+        <h:outputLabel style="font-size: x-large" class="margin-bottom flex-center" value="#{msg['action.createOrder']}" />
+        <div class="flex flex-center">
+            <h:form id="OrderForm" class="text-left reservation-form">
+
+                <div class="margin-bottom text-center">
+                    <h:messages globalOnly="true" styleClass="error_large" />
+                    <div class="flex-column">
+                        <label class="text-left">
+                            <h:outputLabel value="#{msg['clientorder.choose.diet']}*" />
+                        </label>
+                        <h:selectOneMenu  class="js-select" id ="chosenDiet" value="#{createNewClientOrderPageBean.selectedDiet}" required="true">
+                            <f:selectItems value="#{createNewClientOrderPageBean.dietList}" var="diet" itemValue="#{diet.name}" 
+                                           itemLabel="#{diet.name}"/>
+                        </h:selectOneMenu>
+
+                        <label class="text-left">
+                            <h:outputLabel value="#{msg['clientOrder.daysNb']} *" for="daysNb" />
+                            <h:outputLabel value="#{msg['clientOrder.daysNb.info']}"/>
+                        </label>
+                        <h:inputText class="margin-bottom-small" id="daysNb" value="#{createNewClientOrderPageBean.orderItemDTO.daysNb}" title="#{msg['clientOrder.daysNb']}" required="true" >
+                        </h:inputText>
+                        <h:messages for="daysNb" class="error" errorStyle="color:red"/> 
+
+                        <label class="text-left">
+                            <h:outputLabel value="#{msg['clientOrder.dateFrom']} *" for="dateFrom" />
+                            <h:outputLabel value="#{msg['clientOrder.dateFrom.info']}"/>
+                        </label>
+
+                        <p:datePicker id="orderDate" showIcon="true" value="#{createNewClientOrderPageBean.orderItemDTO.dateFrom}" required="true"/>
+                        <h:messages for="orderDate" styleClass="error_small"/> 
+
+                        <div class="flex-center margin-top-small">
+                            <div>
+                                <h:commandButton class="main-button margin-right" action="#{createNewClientOrderPageBean.createNewClientOrder()}" value="#{msg['action.create']}" />
+                            </div>
+                            <div>
+                                <h:commandButton class="main-button" value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
+
+
+
+

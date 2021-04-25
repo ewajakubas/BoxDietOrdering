@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputLabel value="#{msg['account.name']}*" for="name" />
+    <h:inputText id="name" value="#{pageBean.account.name}" title="#{msg['account.name']}" required="true" >               
+    </h:inputText>
+    <h:messages for="name" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.surname']}*" for="surname" />
+    <h:inputText id="surname" value="#{pageBean.account.surname}" title="#{msg['account.surname']}" required="true">     
+    </h:inputText>
+    <h:messages for="surname" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.email']}*" for="email" />
+    <h:inputText id="email" value="#{pageBean.account.email}" title="#{msg['account.email']}" required="true">
+    </h:inputText>
+    <h:messages class="error_large" for="email"  />
+
+    <h:outputLabel value="#{msg['account.phone']}" for="phone" />
+    <h:inputText id="phone" value="#{pageBean.account.phone}" title="#{msg['account.phone']}" required="false">
+    </h:inputText>
+    <h:messages for="phone" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.question']}*" for="question" />
+    <h:inputText id="question" value="#{pageBean.account.question}" title="#{msg['account.question']}" required="true">
+    </h:inputText>
+    <h:messages for="question" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.answer']}*" for="answer" />
+    <h:inputText id="answer" value="#{pageBean.account.answer}" title="#{msg['account.answer']}" required="true">
+    </h:inputText>
+    <h:messages for="answer" styleClass="error_large"/>
+    
+</ui:composition>

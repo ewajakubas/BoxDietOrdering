@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <div class="flex-column">
+        <label class="text-left">
+            <h:outputLabel>${msg['order.number']} </h:outputLabel>
+        </label>
+        <h:outputText value="#{pageBean.clientOrder.id}" />
+        <label class="text-left">
+            <h:outputLabel>${msg['order.whoOrdered']}</h:outputLabel>
+        </label>
+        <h:outputText value="#{pageBean.clientOrder.loginWhoOrdered}" />
+    </div>
+
+    <h:dataTable id="detailsClientorder" var="row" width="100%" class="table table-striped" value="#{pageBean.clientOrder.orderItemList}" headerClass="table_header" rowClasses="row_odd,row_even">
+
+        <h:column id="price">
+            <f:facet name="header">${msg['order.item.price']}</f:facet>
+            <h:outputText value="#{row.price}" >
+                <f:convertNumber  type="currency" currencySymbol="zł"/>
+            </h:outputText>
+        </h:column>
+        <h:column id="daysNb">
+            <f:facet name="header">${msg['clientOrder.daysNb']}</f:facet>
+            <h:outputText value="#{row.daysNb}" />
+        </h:column> 
+        <h:column id="dateFrom">
+            <f:facet name="header">${msg['clientOrder.dateFrom']}</f:facet>
+            <h:outputText value="#{row.dateFrom}" >
+                <f:convertDateTime type="date" dateStyle="full"/>
+            </h:outputText>
+        </h:column>
+
+    </h:dataTable>
+    <br />
+
+    <h:outputLabel>${msg['order.total']} </h:outputLabel><br />
+    <h:outputText value="#{pageBean.clientOrder.totalOrder}" >
+        <f:convertNumber  type="currency" currencySymbol="zł"/>
+    </h:outputText>
+    <br />
+
+</ui:composition>

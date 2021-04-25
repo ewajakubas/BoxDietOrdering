@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="/css/style.css"/>
+        <title>#{msg['app.name']}</title>
+    </h:head>
+    <h:body>
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12 header" align="center">
+                    <ui:insert name="header">
+                        <h1><a href=""><img src="../resources/images/dieta5.jpg" width="80%" height="30%"/></a></h1>
+                    </ui:insert>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 menu">
+                    <ui:insert name="menu">
+                        <div class="row">
+                            <nav class="navbar navbar-inverse">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand">#{msg['main.menu']}</a>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="myNavbar">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="../main/index.xhtml" >#{msg['main.page']}</a></li>
+                                            <f:subview id="menuNotLoggedInView" rendered="#{empty request.remoteUser}">
+                                                <li><a href="../diet/offer.xhtml"><span class="glyphicon glyphicon-tag"></span> #{msg['menu.client.offer']}</a></li>
+                                                <li><a href="../account/registerClient.xhtml"><span class="glyphicon glyphicon-user"></span> #{msg['menu.register']}</a></li>
+                                            </f:subview>     
+                                            <f:subview id="clientView" rendered="#{request.isUserInRole('Client')}">
+                                                <li><h:outputLink value="../clientOrder/createNewClientOrder.xhtml" ><span class="glyphicon glyphicon-plus-sign"></span>#{msg['menu.create.new.clientOrder']}</h:outputLink></li>
+                                                <li><h:outputLink value="../clientOrder/clientOrdersListForClient.xhtml" ><span class="glyphicon glyphicon-align-justify"></span>#{msg['menu.client.orders.list']}</h:outputLink></li>
+                                                <li><h:outputLink value="../diet/clientDietList.xhtml" ><span class="glyphicon glyphicon-align-justify"></span>#{msg['menu.client.offer']}</h:outputLink></li>
+                                            </f:subview>     
+                                            <f:subview id="employeeView" rendered="#{request.isUserInRole('Employee')}">
+                                                <li><a href="../diet/createNewDiet.xhtml" ><span class="glyphicon glyphicon-plus-sign"></span>#{msg['menu.diet.create.new.diet']}</a></li>
+                                                <li><a href="../diet/dietList.xhtml"><span class="glyphicon glyphicon-align-justify"></span> #{msg['menu.diet.list']}</a></li>
+                                                <li><a href="../clientOrder/clientOrdersListForEmployee.xhtml"><span class="glyphicon glyphicon-align-justify"></span> #{msg['menu.orders.list']}</a></li>
+                                                <li><a href="../account/clientsAccountListForEmployee.xhtml"><span class="glyphicon glyphicon-align-justify"></span> #{msg['menu.accounts.clients.list']}</a></li>
+                                            </f:subview>    
+                                            <f:subview id="adminView" rendered="#{request.isUserInRole('Administrator')}">
+                                                <li><a href="../account/accountList.xhtml"><span class="glyphicon glyphicon-align-justify"></span> #{msg['menu.accounts.list']}</a></li>
+                                                <li><a href="../account/createEmployee.xhtml"><span class="glyphicon glyphicon-user"></span> #{msg['menu.accounts.createemployee']}</a></li>
+                                                <li><a href="../account/createAdministrator.xhtml"><span class="glyphicon glyphicon-user"></span> #{msg['menu.accounts.createadmin']}</a></li>
+                                            </f:subview>
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <f:subview id="menuAccountNotLoggedIn" rendered="#{empty request.remoteUser}">
+                                                <li><a href="../account/resetPassword.xhtml"><span class="glyphicon glyphicon-tag"></span> #{msg['menu.accounts.reset.password']}</a></li>
+                                                <li><a href="../login/formLogin.xhtml"><span class="glyphicon glyphicon-log-in"></span> #{msg['action.login']}</a></li>
+                                            </f:subview>
+                                            <f:subview id="menuAccountLoggedIn" rendered="#{not empty request.remoteUser}">
+                                                <li><a href="../account/detailsMyAccount.xhtml"><span class="glyphicon glyphicon-cog"></span> #{msg['menu.accounts.details']}</a></li>
+                                                <li><a href="../account/editMyAccount.xhtml"><span class="glyphicon glyphicon-cog"></span> #{msg['action.account.edit']}</a></li>
+                                                <li><a href="../account/changeMyPassword.xhtml"><span class="glyphicon glyphicon-tags"></span> #{msg['menu.accounts.changePassword']}</a></li>
+                                            </f:subview>  
+                                            <f:subview id="menuAccountLoggedIn2" rendered="#{not empty request.remoteUser}">
+                                                    <li><a> <span class="glyphicon glyphicon-user"></span> ${contextUtils.userName}</a></li>
+                                                <h:form>
+                                                    <h:commandLink  action="#{contextUtils.invalidateSession()}" value="${msg['menu.close.session']}"/>
+                                                </h:form>
+                                            </f:subview>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav> 
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 content-area">
+                    <div class="content">
+                        <ui:insert name="content">
+                        </ui:insert>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 footer">
+                    <ui:insert name="footer">
+                        #{msg['main.footer']}
+                    </ui:insert>
+                </div>              
+            </div>
+        </div> 
+    </h:body>
+</html>
+
+

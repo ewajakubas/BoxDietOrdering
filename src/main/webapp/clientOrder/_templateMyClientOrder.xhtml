@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputLabel>${msg['menu.order.my']} </h:outputLabel>
+    <h:dataTable id="detailsClientOrder" var="row" width="100%" class="table table-striped" value="#{pageBean.clientOrder.orderItemList}" headerClass="table_header" rowClasses="row_odd,row_even">
+        <h:column id="name">
+            <f:facet name="header">${msg['order.item.name']}</f:facet>
+            <h:outputText value="#{row.diet.name}" />
+        </h:column>
+        <h:column id="price">
+            <f:facet name="header">${msg['order.item.price']}</f:facet>
+            <h:outputText value="#{row.price}" >
+                <f:convertNumber  type="currency" currencySymbol="zł"/>
+            </h:outputText>
+        </h:column>
+        <h:column id="daysNb">
+            <f:facet name="header">${msg['clientOrder.daysNb']}</f:facet>
+            <h:outputText value="#{row.daysNb}" />
+        </h:column> 
+        <h:column id="dateFrom">
+            <f:facet name="header">${msg['clientOrder.dateFrom']}</f:facet>
+            <h:outputText value="#{row.dateFrom}" >
+                <f:convertDateTime dateStyle="full" type="date"/>
+            </h:outputText>
+        </h:column>               
+    </h:dataTable>
+
+    <br />
+    <h:outputLabel>${msg['order.total']} </h:outputLabel>
+    <h:outputText value="#{pageBean.clientOrder.totalOrder}" >
+        <f:convertNumber  type="currency" currencySymbol="zł"/>
+    </h:outputText>
+    <br />
+
+</ui:composition>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <h:form id="accountListForm" class="text-left reservation-form">
+        <h:outputLabel style="font-size: x-large" class="margin-bottom flex-center" value="#{msg['menu.accounts.list']}" />
+            <h:messages globalOnly="true" styleClass="error_large" />                
+            <h:messages id="success" for="success" styleClass="confirm_large" />      
+            <div class="flex-column">
+                <h:dataTable id="accountList" width="100%" var="row" class="table table-striped" value="#{accountListPageBean.dataModelAccounts}" headerClass="table_header" rowClasses="row_odd,row_even">
+                    <h:column id="login">
+                        <f:facet name="header">${msg['account.login']}</f:facet>
+                        <h:outputText value="#{row.login}" />
+                    </h:column>
+                    <h:column id="name">
+                        <f:facet name="header">${msg['account.name']}</f:facet>
+                        <h:outputText value="#{row.name}" />
+                    </h:column>
+                    <h:column id="surname">
+                        <f:facet name="header">${msg['account.surname']}</f:facet>
+                        <h:outputText value="#{row.surname}" />
+                    </h:column>
+                    <h:column id="email">
+                        <f:facet name="header">${msg['account.email']}</f:facet>
+                        <h:outputText value="#{row.email}" />
+                    </h:column> 
+                    <h:column id="phone">
+                        <f:facet name="header">${msg['account.phone']}</f:facet>
+                        <h:outputText value="#{row.phone}" />
+                    </h:column>
+                    <h:column id="type">
+                        <f:facet name="header">${msg['account.type']}</f:facet>
+                        <ui:param name="typeAccount" value="#{row.type}" />
+                        <h:outputText value="${msg[typeAccount]}" />
+                    </h:column>
+
+                    <h:column id="state">
+
+                        <f:facet name="header">${msg['account.state']}</f:facet>
+                        <h:selectBooleanCheckbox id="active" value="#{row.active}" disabled="true"/>    
+                        <h:outputLabel for="active" value="${msg['account.active']}" />    
+
+                    </h:column>
+
+                    <h:column id="actions">
+                        <f:facet name="header">${msg['general.actions']}</f:facet>
+                        <h:commandButton action="#{accountListPageBean.editAccount(row)}" value="${msg['action.edit']}"/>
+                        <h:commandButton action="#{accountListPageBean.changePasswordAction(row)}" value="${msg['menu.accounts.changePassword']}"/>
+                        <h:commandButton action="#{accountListPageBean.activateAccountAction(row)}" value="${msg['action.activate']}" rendered="#{not row.active}"/>
+                        <h:commandButton action="#{accountListPageBean.deactivateAccountAction(row)}" value="${msg['action.deactivate']}" rendered="#{row.active}"/>
+                    </h:column>
+
+                </h:dataTable>
+            </div>  
+        </h:form>
+        <h:messages />
+    </ui:define>
+
+</ui:composition>
+

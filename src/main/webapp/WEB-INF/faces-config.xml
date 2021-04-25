@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <application>
+        <locale-config>
+            <default-locale>pl</default-locale>
+            <supported-locale>pl</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>i18n.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <message-bundle>
+            i18n.jsf_messages
+        </message-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+    
+    <navigation-rule>
+        
+        <from-view-id>*</from-view-id> 
+              
+        <navigation-case>           
+            <from-outcome>main</from-outcome>
+            <to-view-id>/main/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>cancelAction</from-outcome>
+            <to-view-id>/main/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>authenticate</from-outcome>
+            <to-view-id>/login/authenticate.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>loginError</from-outcome>
+            <to-view-id>/login/logout.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>registerClient</from-outcome>
+            <to-view-id>/account/registerClient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>confirmRegister</from-outcome>
+            <to-view-id>/account/registerClientConfirm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>accountList</from-outcome>
+            <to-view-id>/account/accountList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createEmployee</from-outcome>
+            <to-view-id>/account/createEmployee.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>  
+              
+        <navigation-case>
+            <from-outcome>createAdmin</from-outcome>
+            <to-view-id>/account/createAdministrator.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editAccount</from-outcome>
+            <to-view-id>/account/editAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>  
+        
+        <navigation-case>
+            <from-outcome>changeMyPassword</from-outcome>
+            <to-view-id>/account/changeMyPassword.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>changePassword</from-outcome>
+            <to-view-id>/account/changePasswordAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>detailsMyAccount</from-outcome>
+            <to-view-id>/account/detailsMyAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+       
+        <navigation-case>
+            <from-outcome>dietList</from-outcome>
+            <to-view-id>/diet/dietList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>clientDietList</from-outcome>
+            <to-view-id>/diet/clientDietList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>createNewDiet</from-outcome>
+            <to-view-id>/diet/createNewDiet.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>editDiet</from-outcome>
+            <to-view-id>/diet/editDiet.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>resetPassword</from-outcome>
+            <to-view-id>/account/resetPassword.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>resetPassword2</from-outcome>
+            <to-view-id>/account/resetPassword2.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/common/sukces.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>messagesForOrder</from-outcome>
+            <to-view-id>/common/messagesForOrder.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>deleteDiet</from-outcome>
+            <to-view-id>/diet/deleteDiet.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createNewClientOrder</from-outcome>
+            <to-view-id>/clientOrder/createNewClientOrder.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>clientOrdersListForEmployee</from-outcome>
+            <to-view-id>/clientOrder/clientOrdersListForEmployee.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+ 
+         <navigation-case>
+            <from-outcome>clientOrdersListForClient</from-outcome>
+            <to-view-id>/clientOrder/clientOrdersListForClient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+         
+        <navigation-case>
+            <from-outcome>editOrConfirmMyClientOrder</from-outcome>
+            <to-view-id>/clientOrder/editOrConfirmMyClientOrder.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+            
+        <navigation-case>
+            <from-outcome>confirmClientOrder</from-outcome>
+            <to-view-id>/clientOrder/confirmClientOrder.xhtml</to-view-id>
+        </navigation-case>
+        <redirect />
+            
+        <navigation-case>
+            <from-outcome>deleteClientOrder</from-outcome>
+            <to-view-id>/clientOrder/deleteClientOrder.xhtml</to-view-id>
+        </navigation-case>
+        <redirect />
+        <navigation-case>
+            <from-outcome>detailsOrder</from-outcome>
+            <to-view-id>/clientOrder/detailsMyClientOrder.xhtml</to-view-id>
+        </navigation-case>
+        <redirect />
+    
+    </navigation-rule>
+</faces-config>

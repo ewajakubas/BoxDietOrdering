@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+    <ui:define name="content" class="flex-center flex-column">
+        <h:outputLabel style="font-size: x-large" class="margin-bottom flex-center" value="#{msg['menu.diet.create.new.diet']}" />
+        <div class="flex flex-center">
+            <h:form id="createNewDietForm" class="text-left reservation-form">
+
+                <div class="margin-bottom text-center">
+                    <h:messages globalOnly="true" styleClass="error_large" />                
+                    <h:messages id="success" for="success" styleClass="confirm_large" />
+
+                    <div class="flex-column">
+                         <ui:include src="_templateDietEdit.xhtml"/>
+                    </div>
+
+                    <div class="flex-center margin-top-small">
+                        <div>
+                            <h:commandButton action="#{createNewDietPageBean.createNewDietAction()}" value="#{msg['action.create']}" />
+                        </div>
+                        <div>
+                            <h:commandButton value="#{msg['action.cancel']}" action="cancelAction" immediate="true" />
+                        </div>
+                    </div>
+                </div>
+            </h:form> 
+        </div>
+    </ui:define>
+
+</ui:composition>
+

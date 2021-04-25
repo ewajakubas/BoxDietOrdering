@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        <p>${msg["main.page"]}/${msg["menu.orders.list"]}</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="../templates/menu.xhtml" />
+    </ui:define>
+    <ui:define name="content" class="flex-center flex-column">
+        <h:form id="clientOrdersListForClientForm" class="text-left reservation-form">
+            <div class="margin-bottom">
+                <h:messages globalOnly="true" styleClass="error_large" /> 
+                <h:messages for="clientOrderList" styleClass="confirm_large" />
+
+                <h:selectBooleanCheckbox id="confirmedOnly" value="#{clientOrdersListForClientPageBean.onlyNotAccepted}" /><h:outputLabel for="confirmedOnly" value="#{msg['clientOrder.notConfirmedOnly']}" />
+                <h:commandButton value="#{msg['action.refresh']}" action="#{clientOrdersListForClientPageBean.refresh()}"/>
+                <div class="flex-column">
+                    <h:dataTable id="clientOrderList" width="100%" var="row" value="#{clientOrdersListForClientPageBean.clientOrderList}" headerClass="table_header" rowClasses="row_odd,row_even">
+
+                        <ui:include src="_templateClientOrderList.xhtml" />
+
+                        <label class="text-left">
+                            <h:column id="acceptedTime">
+                                <f:facet name="header">${msg['order.acceptedTime']}</f:facet>
+                                <h:outputText value="#{row.acceptedTmp}" >
+                                    <f:convertDateTime dateStyle="full" type="date"/>
+                                </h:outputText>
+                            </h:column>
+                        </label>
+
+                        <h:column id="actions">
+                            <f:facet name="header">${msg['general.actions']}</f:facet>
+                            <div>
+                                <h:commandButton action="#{clientOrdersListForClientPageBean.viewSelectedClientOrder(row)}" value="${msg['action.details']}"/>
+                                <h:commandButton action="#{clientOrdersListForClientPageBean.deleteSelectedClientOrder(row)}" value="${msg['action.delete']}" rendered="#{not row.accepted}"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

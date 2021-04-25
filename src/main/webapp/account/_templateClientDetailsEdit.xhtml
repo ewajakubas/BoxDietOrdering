@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputLabel value="#{msg['account.city']}*" for="city" />
+    <h:inputText id="nip" value="#{pageBean.account.city}" title="#{msg['account.city']}" required="true" />
+    <h:messages for="city" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.street']}*" for="street" />
+    <h:inputText id="street" value="#{pageBean.account.street}" title="#{msg['account.street']}" required="true"/>
+    <h:messages for="street" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.zipCode']}*" for="zipCode" />
+    <h:inputText id="zipCode" value="#{pageBean.account.zipCode}" title="#{msg['account.zipCode']}" required="true">
+    </h:inputText>
+    <h:messages for="zipCode" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.houseNumber']}*" for="houseNumber" />
+    <h:inputText id="houseNumber" value="#{pageBean.account.houseNumber}" title="#{msg['account.houseNumber']}"/>
+    <h:messages for="houseNumber" styleClass="error_large"/>
+
+    <h:outputLabel value="#{msg['account.apartmentNumber']}" for="apartmentNumber" />
+    <h:inputText id="apartmentNumber" value="#{pageBean.account.apartmentNumber}" title="#{msg['account.apartmentNumber']}"/>
+    <h:messages for="apartmentNumber" />
+</ui:composition>

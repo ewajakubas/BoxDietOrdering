@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputLabel value="#{msg['diet.name']} *" for="name" />
+    <h:inputText id="name" value="#{createNewDietPageBean.diet.name}" title="#{msg['diet.name']}" required="true" >
+    </h:inputText>
+    <h:messages for="name" class="error" errorStyle="color:red"/> 
+
+    <h:outputLabel value="#{msg['diet.price']}*" for="price" />
+    <h:inputText id="price" value="#{createNewDietPageBean.diet.price}" title="#{msg['diet.price']}" required="true">
+    </h:inputText>
+    <h:messages for="price" errorStyle="color:red" />
+
+    <h:outputLabel value="#{msg['diet.category']}*" />
+
+    <h:selectOneMenu  value="#{createNewDietPageBean.selectedDietCategoryName}" required="true">
+        <f:selectItems value="#{createNewDietPageBean.dietCategoryList}" var="dietCategory" itemValue="#{dietCategory.name}" 
+                       itemLabel="#{dietCategory.name}"/>
+    </h:selectOneMenu>
+</ui:composition>

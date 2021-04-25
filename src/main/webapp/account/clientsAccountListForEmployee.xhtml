@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        <p>${msg["main.page"]}/${msg["menu.accounts.clients.list"]}</p>
+    </ui:define>
+    <ui:define name="left">
+        <ui:include src="../templates/menu.xhtml" />
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="accountClientListForm" class="text-left reservation-form">
+            <h:messages globalOnly="true" styleClass="error_large" />                
+            <h:messages id="success" for="success" styleClass="confirm_large" />      
+            <div class="flex-column">
+                <h:dataTable id="accountClientList" width="100%" var="row" class="table table-striped" value="#{accountsClientsListPageBean.dataModelAccounts}" headerClass="table_header" rowClasses="row_odd,row_even">
+                    <h:column id="login">
+                        <f:facet name="header">${msg['account.login']}</f:facet>
+                        <h:outputText value="#{row.login}" />
+                    </h:column>
+                    <h:column id="name">
+                        <f:facet name="header">${msg['account.name']}</f:facet>
+                        <h:outputText value="#{row.name}" />
+                    </h:column>
+                    <h:column id="surname">
+                        <f:facet name="header">${msg['account.surname']}</f:facet>
+                        <h:outputText value="#{row.surname}" />
+                    </h:column>
+                    <h:column id="email">
+                        <f:facet name="header">${msg['account.email']}</f:facet>
+                        <h:outputText value="#{row.email}" />
+                    </h:column> 
+                    <h:column id="phone">
+                        <f:facet name="header">${msg['account.phone']}</f:facet>
+                        <h:outputText value="#{row.phone}" />
+                    </h:column>
+                    <h:column id="type">
+                        <f:facet name="header">${msg['account.type']}</f:facet>
+                        <ui:param name="typeAccount" value="#{row.type}" />
+                        <h:outputText value="${msg[typeAccount]}" />
+                    </h:column>    
+                    <h:column id="state">
+                        <f:facet name="header">${msg['account.state']}</f:facet>
+                        <h:selectBooleanCheckbox id="active" value="#{row.active}" disabled="true"/>    
+                        <h:outputLabel for="active" value="${msg['account.active']}" />    
+                    </h:column>
+                     <h:column id="city">
+                        <f:facet name="header">${msg['account.city']}</f:facet>
+                        <ui:param name="city" value="#{row.city}" />    
+                        <h:outputText value="#{row.city}" />   
+                    </h:column>
+                     <h:column id="street">
+                        <f:facet name="header">${msg['account.street']}</f:facet>
+                        <ui:param name="street" value="#{row.street}" />    
+                        <h:outputText value="#{row.street}" />   
+                    </h:column>
+                     <h:column id="zipCode">
+                        <f:facet name="header">${msg['account.zipCode']}</f:facet>
+                        <ui:param name="zipCode" value="#{row.zipCode}" />    
+                        <h:outputText value="#{row.zipCode}" />   
+                    </h:column>
+                     <h:column id="houseNumber">
+                        <f:facet name="header">${msg['account.houseNumber']}</f:facet>
+                        <ui:param name="houseNumber" value="#{row.houseNumber}" />    
+                        <h:outputText value="#{row.houseNumber}" />   
+                    </h:column>
+                     <h:column id="apartmentNumber">
+                        <f:facet name="header">${msg['account.apartmentNumber']}</f:facet>
+                        <ui:param name="apartmentNumber" value="#{row.apartmentNumber}" />    
+                        <h:outputText value="#{row.apartmentNumber}" />   
+                    </h:column>
+               
+                </h:dataTable>
+            </div>  
+        </h:form>
+        <h:messages />
+    </ui:define>
+
+</ui:composition>
+

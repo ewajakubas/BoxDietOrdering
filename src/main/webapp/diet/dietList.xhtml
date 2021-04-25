@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="content">
+                <h:form id="DietsForm" class="text-left reservation-form" >
+                    <div class="margin-bottom">
+                        <h:outputLabel style="font-size: x-large"  class="margin-bottom" value="#{msg['menu.diet.list']}" />
+                        <h:messages globalOnly="true" styleClass="error_large" />                
+                        <h:messages id="success" for="success" styleClass="confirm_large" />
+                        <div class="flex-column">
+                            <h:dataTable width="70%" var="row" class="table table-striped" value="${dietListPageBean.dataModelDiets}">
+                                <label class ="text-left" >
+                                    <h:column id="name" class="padding">
+                                        <f:facet name="header">${msg['diet.name']}</f:facet>
+                                        <h:outputText value="#{row.name}" />
+                                    </h:column>
+                                </label> 
+                                <label class="text-left">
+                                    <h:column id="price">
+                                        <f:facet name="header">${msg['diet.price']}</f:facet>
+                                        <h:outputText value="#{row.price}" >
+                                            <f:convertNumber  type="currency" currencySymbol="zł"/>
+                                        </h:outputText>
+                                    </h:column>
+                                </label>
+                                <label class="text-left"> 
+                                    <h:column id="dietCategory">
+                                        <f:facet name="header">${msg['diet.category']}</f:facet>
+                                        <h:outputText value="#{row.dietCategory.name}" />
+                                    </h:column>
+                                </label>    
+                                <h:column id="actions">
+                                    <f:facet name="header">${msg['general.actions']}</f:facet>
+                                    <div>
+                                        <h:commandButton value="${msg['action.edit']}" class="margin-right-small"  action="${dietListPageBean.editDietAction(row)}"/>
+                                        <h:commandButton value="${msg['action.delete']}" class="margin-right-small"  action="${dietListPageBean.deleteSelectedDietAction(row)}"/>
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="flex-center margin-top-small">
+                            <div>
+                                <h:commandButton value="#{msg['action.cancel']}" class="main-button" action="../main/index.xhtml" immediate="true"/>   
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>             

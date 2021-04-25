@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="../templates/MainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:param name="pageBean" value="#{editMyAccountPageBean}" />
+
+    <ui:define name="content">
+        <h:outputLabel style="font-size: x-large" value="#{msg['menu.accounts.edit']}" />
+
+        <h:form id="editMyAccountForm" >
+            <h:messages globalOnly="true" styleClass="error_large" />                
+            <h:messages id="success" for="success" styleClass="confirm_large" />
+            <h:panelGrid columns="3">
+
+                <h:outputLabel value="#{msg['account.login']}" for="login" />
+                <h:outputText id="login" value="#{pageBean.account.login}" title="#{msg['account.login']}" />
+                <h:message for="login" style="color:red"/>
+
+                <h:outputLabel value="#{msg['account.name']}*" for="name" />
+                <h:inputText id="name" value="#{pageBean.account.name}" title="#{msg['account.name']}" required="true" >
+                </h:inputText>
+                <h:messages for="name" />
+
+                <h:outputLabel value="#{msg['account.surname']}*" for="surname" />
+                <h:inputText id="surname" value="#{pageBean.account.surname}" title="#{msg['account.surname']}" required="true" >
+                </h:inputText>
+                <h:messages for="surname" />
+
+                <h:outputLabel value="#{msg['account.email']}*" for="email" />
+                <h:inputText id="email" value="#{pageBean.account.email}" title="#{msg['account.email']}" required="true" >
+                </h:inputText>
+                <h:messages class="error_large" for="email"  />
+
+                <h:outputLabel value="#{msg['account.phone']}" for="phone" />
+                <h:inputText id="phone" value="#{pageBean.account.phone}" title="#{msg['account.phone']}" required="false" >
+                </h:inputText>
+                <h:messages for="phone" />
+
+                <c:if test="#{pageBean.client}">
+                    <ui:include src="_templateClientDetailsEdit.xhtml" />
+                </c:if>
+
+                <c:if test="#{pageBean.employee}">
+                    <ui:include src="_templateEmployeeDetailsEdit.xhtml"/>
+                </c:if>
+
+                <c:if test="#{pageBean.administrator}">
+                    <ui:include src="_templateAdministratorDetailsEdit.xhtml"/>
+                </c:if>
+
+            </h:panelGrid>
+            <br />
+
+            <c:if test="#{pageBean.client}">
+                <h:commandButton action="#{pageBean.saveMyAccountClient()}" value="#{msg['action.account.edit']}" />
+            </c:if>
+            <c:if test="#{pageBean.employee}">
+                <h:commandButton action="#{pageBean.saveMyAccountEmployee()}" value="#{msg['action.account.edit']}" />
+            </c:if>
+            <c:if test="#{pageBean.administrator}">
+                <h:commandButton action="#{pageBean.saveMyAccountAdministrator()}" value="#{msg['action.account.edit']}" />
+            </c:if>
+            <br />
+            <h:commandButton value="#{msg['action.cancel']}" action="main" immediate="true" />
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
