@@ -5,7 +5,7 @@
 
 Celem projektu było stworzenie wielodostępnego systemu informatycznego, umożliwiającego obsługę zamówień diety pudełkowej czyli cateringu dietetycznego z dostawą. System pozwala zarejestrowanym klientom zamawiać wybrany przez siebie rodzaj diety na wybrany przez siebie okresu czasu. 
 
-Budowany system informatyczny będzie złożony ze stanowej aplikacji internetowej i relacyjnej bazy danych. Aplikacja zostanie uruchomiona w serwerze aplikacyjnym Payara, a baza danych będzie osadzona w systemie zarządzania bazami danych JavaDB. Zarówno serwer aplikacyjny Payara jak i system zarządzania bazami danych zostaną uruchomione w tym samym systemie operacyjnym.
+Budowany system informatyczny złożony jest ze stanowej aplikacji internetowej i relacyjnej bazy danych. Aplikacja jest uruchomiona w serwerze aplikacyjnym Payara, a baza danych jest osadzona w systemie zarządzania bazami danych JavaDB.
 
 Stworzony system zapewnia trzy poziomy dostępu i funkcje użytkownika nieuwierzytelnionego. Użytkownik nieuwierzytelniony, czyli Gość, może przeglądać ofertę diet, zalogować się, utworzyć nowe konto lub zresetować hasło. Administrator posiada możliwość zarządzania kontami wszystkich użytkowników, m.in. ich tworzenia (pracownik, administrator), edytowania oraz aktywowania i dezaktywowania. Pracownik odpowiedzialny jest za obsługę zamówień diet, może przeglądać ich listy, zatwierdzać zamówienia opłacone oraz usuwać zamówienia nieopłacone. Pracownik zarządza też dietami, może je dodawać, usuwać oraz je edytować. Ma też dostęp do listy klientów. Klient ma możliwość utworzenia zamówienia na dietę poprzez wybór rodzaju diety, liczby dni obowiązującej diety oraz wyboru pierwszego dnia od kiedy dieta ma obowiązywać czyli pierwszego dnia dostawy cateringu. Ma dostęp do listy swoich zamówień opłaconych i nieopłaconych, może usuwać swoje nieopłacone zamówienia. Dodatkowo system usuwa nieopłacone zamówienia klienta po upływie terminu 3 dni od złożenia zamówienia, dzięki zastosowaniu metody wywoływanej cyklicznie.
 
@@ -29,7 +29,7 @@ Stos technologiczny użyty przy realizacji projektu:
 
 
 Do zdefiniowania interfejsu użytkownika zastosowano technologię JavaServer Faces wykorzystując komponenty biblioteki PrimeFaces.
-Dzięki zastosowanemu mechanizmowi internacjonalizacji, możliwe jest uruchomianie aplikacji w języku angielskim bądź polskim, oczywiście istnieje możliwość dalszego poszerzania listy języków.
+Dzięki zastosowanemu mechanizmowi internacjonalizacji, możliwe jest uruchomianie aplikacji w języku angielskim bądź polskim.
 W aplikacji zaimplementowano obsługę błędów. W celu zapobieganiu uszkodzenia danych, każdy zgłoszony wyjątek aplikacyjny wymusza wycofanie transakcji aplikacyjnej, a jego obsługa odbywa się poprzez propagowanie go do warstwy widoku i poinformowaniu użytkownika o wystąpieniu błędu. 
 W aplikacji zastosowano strategię zarządzania transakcjami aplikacyjnymi przez kontener EJB, tzw. strategię CMT. Do serwera aplikacji została delegowana obsługa uprawnień oraz kontroli dostępu. Dostęp do biznesowych metod w punktach dostępowych oraz fasadach został przyznany określonym poziomom dostępu za pomocą adnotacji. W aplikacji zaimplementowano mechanizm rejestrujący podejmowane przez użytkowników czynności biznesowe w dziennikach zdarzeń. W dziennikach tych utrwalane są też informacje o granicach transakcji bazodanowych wraz ze statusem jej zakończenia. 
 W zbudowanym systemie informatycznym w celu umożliwienia jednoczesnej pracy wielu użytkowników wykorzystano mechanizm blokad optymistycznych.
